@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
 import auth from "../firebase/firebase.config";
+import { updateProfile } from "firebase/auth";
 
 const Register = () => {
 
@@ -17,7 +18,8 @@ const Register = () => {
    
 
 
-    // const name = e.target.name.value;
+    const name = e.target.name.value;
+
     const  email = e.target.email.value;
     const password = e.target.password.value;
     
@@ -25,15 +27,16 @@ const Register = () => {
 
      createUser(email,password)
      .then(result=>{
-      console.log(result.user)
-     })
-     .catch(error=>{
-      console.log(error)
-     })
+     
+     
+      updateProfile(auth.currentUser, {
+        displayName: name
+      })
 
+    console.log(result.user)
 
-
-  };
+  })
+}
   return (
     <div>
       <div className="hero min-h-screen bg-base-200">
@@ -49,6 +52,16 @@ const Register = () => {
           <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
             <form onSubmit={handleRegister} className="card-body">
               <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Name</span>
+                </label>
+                <input
+                  type="name"
+                  name="name"
+                  placeholder="username"
+                  className="input input-bordered"
+                  required
+                />
                 <label className="label">
                   <span className="label-text">Email</span>
                 </label>
@@ -89,4 +102,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Register
