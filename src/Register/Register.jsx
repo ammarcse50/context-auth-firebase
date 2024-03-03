@@ -35,6 +35,8 @@ const Register = () => {
 
     console.log(result.user)
 
+      e.target.reset()
+
   })
 }
   return (

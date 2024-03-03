@@ -48,13 +48,16 @@ const Navbar = () => {
             <li>
               <Link to="/register">Register</Link>
             </li>
+            <li>
+              <Link to="/orders">Orders</Link>
+            </li>
           </ul>
         </div>
         <div className="navbar-end mr-3">
           {user ? (
             <>
               <span className="mr-4">{user.email}</span>
-              <a onClick={handleLogOut} className="btn">
+              <a onClick={handleLogOut} className="btn btn-sm">
                 Sign Out
               </a>
             </>
